@@ -1,0 +1,14 @@
+include_rules
+
+SRCS = \
+  GrBufferObj.cpp \
+  GrDebugGL.cpp \
+  GrFrameBufferObj.cpp \
+  GrGLCreateDebugInterface.cpp \
+  GrProgramObj.cpp \
+  GrShaderObj.cpp \
+  GrTextureObj.cpp \
+  GrTextureUnitObj.cpp \
+  SkDebugGLContext.cpp
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

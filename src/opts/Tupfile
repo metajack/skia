@@ -1,11 +1,19 @@
 include_rules
 
-SRCS = \
-  SkBitmapProcState_opts_SSE2.cpp \
-  SkBitmapProcState_opts_SSSE3.cpp \
-  SkBlitRect_opts_SSE2.cpp \
-  SkBlitRow_opts_SSE2.cpp \
-  SkUtils_opts_SSE2.cpp \
-  opts_check_SSE2.cpp
+ifneq (@(ARCH),arm)
+  SRCS = \
+    SkBitmapProcState_opts_SSE2.cpp \
+    SkBitmapProcState_opts_SSSE3.cpp \
+    SkBlitRect_opts_SSE2.cpp \
+    SkBlitRow_opts_SSE2.cpp \
+    SkUtils_opts_SSE2.cpp \
+    opts_check_SSE2.cpp
+else
+  SRCS = \
+    SkBitmapProcState_opts_arm.cpp \
+    SkBlitRow_opts_none.cpp \
+    SkUtils_opts_none.cpp \
+    opts_check_arm.cpp
+endif
 
 : foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

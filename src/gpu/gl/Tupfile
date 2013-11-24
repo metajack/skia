@@ -1,15 +1,20 @@
 include_rules
 
 SRCS = \
+  GrGLBufferImpl.cpp \
   GrGLCaps.cpp \
-  GrGLContextInfo.cpp \
+  GrGLContext.cpp \
   GrGLCreateNullInterface.cpp \
   GrGLDefaultInterface_native.cpp \
   GrGLEffect.cpp \
+  GrGLEffectMatrix.cpp \
+  GrGLExtensions.cpp \
   GrGLIndexBuffer.cpp \
   GrGLInterface.cpp \
+  GrGLNoOpInterface.cpp \
   GrGLPath.cpp \
   GrGLProgram.cpp \
+  GrGLProgramDesc.cpp \
   GrGLRenderTarget.cpp \
   GrGLSL.cpp \
   GrGLShaderBuilder.cpp \
@@ -17,10 +22,11 @@ SRCS = \
   GrGLTexture.cpp \
   GrGLUniformManager.cpp \
   GrGLUtil.cpp \
+  GrGLVertexArray.cpp \
   GrGLVertexBuffer.cpp \
   GrGpuGL.cpp \
   GrGpuGL_program.cpp \
-  SkGLContext.cpp \
+  SkGLContextHelper.cpp \
   SkNullGLContext.cpp
 
 : foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

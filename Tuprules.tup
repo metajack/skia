@@ -20,7 +20,9 @@ CXXFLAGS = \
   -I$(TOP)/include/core \
   -I$(TOP)/include/effects \
   -I$(TOP)/include/gpu \
+  -I$(TOP)/include/lazy \
   -I$(TOP)/include/ports \
+  -I$(TOP)/include/utils \
   -I$(TOP)/src/core \
   -I$(TOP)/src/image \
   -I$(TOP)/src/gpu

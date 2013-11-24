@@ -5,6 +5,7 @@ SRCS =
 ifeq (@(PLATFORM),macosx)
   SRCS += \
     GrGLCreateNativeInterface_mac.cpp \
+    GrGLNativeSharedGLContext_mac.cpp \
     SkNativeGLContext_mac.cpp
 endif
 

@@ -5,6 +5,7 @@ SRCS = \
   Sk2DPathEffect.cpp \
   SkArithmeticMode.cpp \
   SkAvoidXfermode.cpp \
+  SkBicubicImageFilter.cpp \
   SkBitmapSource.cpp \
   SkBlendImageFilter.cpp \
   SkBlurDrawLooper.cpp \
@@ -18,6 +19,7 @@ SRCS = \
   SkCornerPathEffect.cpp \
   SkDashPathEffect.cpp \
   SkDiscretePathEffect.cpp \
+  SkDisplacementMapEffect.cpp \
   SkEmbossMask.cpp \
   SkEmbossMaskFilter.cpp \
   SkKernel33MaskFilter.cpp \
@@ -26,16 +28,18 @@ SRCS = \
   SkLightingImageFilter.cpp \
   SkMagnifierImageFilter.cpp \
   SkMatrixConvolutionImageFilter.cpp \
+  SkMergeImageFilter.cpp \
   SkMorphologyImageFilter.cpp \
+  SkOffsetImageFilter.cpp \
   SkPaintFlagsDrawFilter.cpp \
+  SkPerlinNoiseShader.cpp \
   SkPixelXorXfermode.cpp \
   SkPorterDuff.cpp \
-  SkSingleInputImageFilter.cpp \
+  SkRectShaderImageFilter.cpp \
   SkStippleMaskFilter.cpp \
   SkTableColorFilter.cpp \
   SkTableMaskFilter.cpp \
   SkTestImageFilters.cpp \
   SkTransparentShader.cpp
-
 
 : foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

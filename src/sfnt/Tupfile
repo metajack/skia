@@ -1,0 +1,7 @@
+include_rules
+
+SRCS = \
+  SkOTTable_name.cpp \
+  SkOTUtils.cpp
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

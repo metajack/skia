@@ -21,15 +21,16 @@ SRCS = \
   GrGpu.cpp \
   GrGpuFactory.cpp \
   GrInOrderDrawBuffer.cpp \
-  GrMatrix.cpp \
   GrMemory.cpp \
   GrMemoryPool.cpp \
+  GrOvalRenderer.cpp \
   GrPath.cpp \
   GrPathRenderer.cpp \
   GrPathRendererChain.cpp \
   GrPathUtils.cpp \
   GrRectanizer.cpp \
   GrRectanizer_fifo.cpp \
+  GrReducedClip.cpp \
   GrRenderTarget.cpp \
   GrResource.cpp \
   GrResourceCache.cpp \

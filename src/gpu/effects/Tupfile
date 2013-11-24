@@ -3,6 +3,7 @@ include_rules
 SRCS = \
   GrConfigConversionEffect.cpp \
   GrConvolutionEffect.cpp \
+  GrSimpleTextureEffect.cpp \
   GrSingleTextureEffect.cpp \
   GrTextureDomainEffect.cpp \
   GrTextureStripAtlas.cpp

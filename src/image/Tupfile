@@ -5,9 +5,11 @@ SRCS = \
   SkImage.cpp \
   SkImagePriv.cpp \
   SkImage_Codec.cpp \
+  SkImage_Gpu.cpp \
   SkImage_Picture.cpp \
   SkImage_Raster.cpp \
   SkSurface.cpp \
+  SkSurface_Gpu.cpp \
   SkSurface_Picture.cpp \
   SkSurface_Raster.cpp
 
