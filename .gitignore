@@ -5,3 +5,10 @@
 /third_party/externals/
 /xcodebuild/
 Makefile
+/*.ninja
+/.ninja*
+/CMakeCache.txt
+/CMakeFiles
+/cmake_install.cmake
+*.a
+*.o
