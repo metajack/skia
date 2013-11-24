@@ -1,0 +1,15 @@
+include_rules
+
+SRCS =
+
+ifeq (@(PLATFORM),macosx)
+  SRCS += \
+    SkDebug_stdio.cpp \
+    SkFontDescriptor.cpp \
+    SkFontHost_mac_coretext.cpp \
+    SkOSFile_stdio.cpp \
+    SkThread_pthread.cpp
+endif
+
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

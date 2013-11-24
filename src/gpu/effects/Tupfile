@@ -1,0 +1,10 @@
+include_rules
+
+SRCS = \
+  GrConfigConversionEffect.cpp \
+  GrConvolutionEffect.cpp \
+  GrSingleTextureEffect.cpp \
+  GrTextureDomainEffect.cpp \
+  GrTextureStripAtlas.cpp
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

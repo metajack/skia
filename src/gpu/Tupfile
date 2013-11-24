@@ -1,0 +1,52 @@
+include_rules
+
+SRCS = \
+  GrAAConvexPathRenderer.cpp \
+  GrAAHairLinePathRenderer.cpp \
+  GrAARectRenderer.cpp \
+  GrAddPathRenderers_default.cpp \
+  GrAllocPool.cpp \
+  GrAtlas.cpp \
+  GrBufferAllocPool.cpp \
+  GrCacheID.cpp \
+  GrClipData.cpp \
+  GrClipMaskCache.cpp \
+  GrClipMaskManager.cpp \
+  GrContext.cpp \
+  GrDefaultPathRenderer.cpp \
+  GrDrawState.cpp \
+  GrDrawTarget.cpp \
+  GrEffect.cpp \
+  GrGeometryBuffer.cpp \
+  GrGpu.cpp \
+  GrGpuFactory.cpp \
+  GrInOrderDrawBuffer.cpp \
+  GrMatrix.cpp \
+  GrMemory.cpp \
+  GrMemoryPool.cpp \
+  GrPath.cpp \
+  GrPathRenderer.cpp \
+  GrPathRendererChain.cpp \
+  GrPathUtils.cpp \
+  GrRectanizer.cpp \
+  GrRectanizer_fifo.cpp \
+  GrRenderTarget.cpp \
+  GrResource.cpp \
+  GrResourceCache.cpp \
+  GrSWMaskHelper.cpp \
+  GrSoftwarePathRenderer.cpp \
+  GrStencil.cpp \
+  GrStencilAndCoverPathRenderer.cpp \
+  GrStencilBuffer.cpp \
+  GrSurface.cpp \
+  GrTextContext.cpp \
+  GrTextStrike.cpp \
+  GrTexture.cpp \
+  GrTextureAccess.cpp \
+  SkGpuDevice.cpp \
+  SkGr.cpp \
+  SkGrFontScaler.cpp \
+  SkGrPixelRef.cpp \
+  SkGrTexturePixelRef.cpp
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

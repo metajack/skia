@@ -1,0 +1,11 @@
+include_rules
+
+SRCS =
+
+ifeq (@(PLATFORM),macosx)
+  SRCS += \
+    GrGLCreateNativeInterface_mac.cpp \
+    SkNativeGLContext_mac.cpp
+endif
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

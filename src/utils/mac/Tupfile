@@ -1,0 +1,13 @@
+include_rules
+
+SRCS =
+
+ifeq (@(PLATFORM),macosx)
+  CXXFLAGS += -I$(TOP)/include/utils/mac
+
+  SRCS += \
+    SkCreateCGImageRef.cpp \
+    SkStream_mac.cpp
+endif
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

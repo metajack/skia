@@ -1,0 +1,26 @@
+include_rules
+
+SRCS = \
+  GrGLCaps.cpp \
+  GrGLContextInfo.cpp \
+  GrGLCreateNullInterface.cpp \
+  GrGLDefaultInterface_native.cpp \
+  GrGLEffect.cpp \
+  GrGLIndexBuffer.cpp \
+  GrGLInterface.cpp \
+  GrGLPath.cpp \
+  GrGLProgram.cpp \
+  GrGLRenderTarget.cpp \
+  GrGLSL.cpp \
+  GrGLShaderBuilder.cpp \
+  GrGLStencilBuffer.cpp \
+  GrGLTexture.cpp \
+  GrGLUniformManager.cpp \
+  GrGLUtil.cpp \
+  GrGLVertexBuffer.cpp \
+  GrGpuGL.cpp \
+  GrGpuGL_program.cpp \
+  SkGLContext.cpp \
+  SkNullGLContext.cpp
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

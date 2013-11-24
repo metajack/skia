@@ -5,3 +5,6 @@
 /third_party/externals/
 /xcodebuild/
 Makefile
+*.o
+*.a
+/.tup

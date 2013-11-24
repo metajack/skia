@@ -1,0 +1,14 @@
+include_rules
+
+SRCS = \
+  SkDataPixelRef.cpp \
+  SkImage.cpp \
+  SkImagePriv.cpp \
+  SkImage_Codec.cpp \
+  SkImage_Picture.cpp \
+  SkImage_Raster.cpp \
+  SkSurface.cpp \
+  SkSurface_Picture.cpp \
+  SkSurface_Raster.cpp
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

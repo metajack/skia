@@ -1,0 +1,41 @@
+include_rules
+
+SRCS = \
+  Sk1DPathEffect.cpp \
+  Sk2DPathEffect.cpp \
+  SkArithmeticMode.cpp \
+  SkAvoidXfermode.cpp \
+  SkBitmapSource.cpp \
+  SkBlendImageFilter.cpp \
+  SkBlurDrawLooper.cpp \
+  SkBlurImageFilter.cpp \
+  SkBlurMask.cpp \
+  SkBlurMaskFilter.cpp \
+  SkColorFilterImageFilter.cpp \
+  SkColorFilters.cpp \
+  SkColorMatrix.cpp \
+  SkColorMatrixFilter.cpp \
+  SkCornerPathEffect.cpp \
+  SkDashPathEffect.cpp \
+  SkDiscretePathEffect.cpp \
+  SkEmbossMask.cpp \
+  SkEmbossMaskFilter.cpp \
+  SkKernel33MaskFilter.cpp \
+  SkLayerDrawLooper.cpp \
+  SkLayerRasterizer.cpp \
+  SkLightingImageFilter.cpp \
+  SkMagnifierImageFilter.cpp \
+  SkMatrixConvolutionImageFilter.cpp \
+  SkMorphologyImageFilter.cpp \
+  SkPaintFlagsDrawFilter.cpp \
+  SkPixelXorXfermode.cpp \
+  SkPorterDuff.cpp \
+  SkSingleInputImageFilter.cpp \
+  SkStippleMaskFilter.cpp \
+  SkTableColorFilter.cpp \
+  SkTableMaskFilter.cpp \
+  SkTestImageFilters.cpp \
+  SkTransparentShader.cpp
+
+
+: foreach $(SRCS) |> ^ CXX %f^ $(CXX) $(CXXFLAGS) -c %f -o %o |> %B.o

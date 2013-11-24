@@ -1,0 +1,30 @@
+ifndef CC
+  CC = gcc
+endif
+ifndef CXX
+  CXX = g++
+endif
+ifndef AR
+  AR = ar
+endif
+
+TOP = $(TUP_CWD)
+
+CXXFLAGS = \
+  -Wno-c++11-extensions \
+  -DSK_RELEASE \
+  -DGR_RELEASE=1 \
+  -DSK_A32_SHIFT=24 -DSK_R32_SHIFT=16 -DSK_G32_SHIFT=8 -DSK_B32_SHIFT=0 \
+  -O3 \
+  -I$(TOP)/include/config \
+  -I$(TOP)/include/core \
+  -I$(TOP)/include/effects \
+  -I$(TOP)/include/gpu \
+  -I$(TOP)/include/ports \
+  -I$(TOP)/src/core \
+  -I$(TOP)/src/image \
+  -I$(TOP)/src/gpu
+
+ifneq (@(ARCH),arm)
+  CXXFLAGS += -mssse3
+endif

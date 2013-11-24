@@ -1,0 +1,13 @@
+include_rules
+
+OBJS = \
+  src/core/*.o \
+  src/effects/*.o \
+  src/gpu/*.o \
+  src/gpu/gl/*.o \
+  src/gpu/gl/mac/*.o \
+  src/image/*.o \
+  src/opts/*.o \
+  src/utils/mac/*.o
+
+: $(OBJS) |> ^ AR %o^ $(AR) crs %o %f |> libskia.a
