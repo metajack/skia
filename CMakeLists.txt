@@ -17,10 +17,10 @@ add_definitions(
   -DSK_G32_SHIFT=8
   -DSK_B32_SHIFT=0
   -DGR_GL_USE_NEW_SHADER_SOURCE_SIGNATURE=1
-  )
+)
 include_directories(
-  ${DEP_FREETYPE_OUTDIR}
-  ${DEP_EXPAT_OUTDIR}/include
+  $ENV{DEP_FREETYPE_OUTDIR}
+  $ENV{DEP_EXPAT_OUTDIR}/include
   include/config
   include/core
   include/effects
@@ -485,6 +485,7 @@ set_prefix(SKIA_THIRDPARTY_SRC third_party/
 if(WIN32)
   add_definitions(-D_WIN32_WINNT=0x0600 -DSK_BUILD_FOR_WIN32 -DSK_INCLUDE_FREETYPE)
   include_directories(include/utils/win)
+  include_directories(src/utils/win)
 
   set_prefix(SKIA_GL_WIN32_SRC src/gpu/gl/win/
     GrGLCreateNativeInterface_win.cpp
@@ -493,11 +494,7 @@ if(WIN32)
   set(SKIA_GL_SRC "${SKIA_GL_SRC};${SKIA_GL_WIN32_SRC}")
   set_prefix(SKIA_PORTS_SRC src/ports/
     SkDebug_win.cpp
-    SkFontConfigInterface_direct.cpp
     SkFontHost_win.cpp
-    SkFontHost_FreeType.cpp
-    SkFontHost_FreeType_common.cpp
-    SkFontHost_fontconfig.cpp
     SkGlobalInitialization_default.cpp
     SkImageDecoder_empty.cpp
     SkMemory_malloc.cpp
@@ -505,12 +502,34 @@ if(WIN32)
     SkOSFile_stdio.cpp
     SkTLS_win.cpp
     )
-  set_prefix(SKIA_FONTS_SRC src/fonts/
+
+  set_prefix(SKIA_PORTS_FC_SRC src/ports/
+    SkFontConfigInterface_direct.cpp
+    SkFontHost_FreeType.cpp
+    SkFontHost_FreeType_common.cpp
+    SkFontHost_fontconfig.cpp
+    )
+  set_prefix(SKIA_PORTS_DW_SRC src/ports/
+    SkFontMgr_default_dw.cpp
+    SkFontMgr_win_dw.cpp
+    SkTypeface_win_dw.cpp
+    SkScalerContext_win_dw.cpp
+    )
+  set(SKIA_PORTS_SRC "${SKIA_PORTS_SRC};${SKIA_PORTS_DW_SRC}")
+
+  set_prefix(SKIA_FONTS_FC_SRC src/fonts/
     SkFontMgr_fontconfig.cpp
     )
+  set_prefix(SKIA_FONTS_DW_SRC src/fonts/
+    SkFontMgr_indirect.cpp
+    )
+  set(SKIA_FONTS_SRC ${SKIA_FONTS_DW_SRC})
+
   set_prefix(SKIA_UTILS_WIN32_SRC src/utils/win/
     SkAutoCoInitialize.cpp
     SkDWrite.cpp
+    SkDWriteFontFileStream.cpp
+    SkDWriteGeometrySink.cpp
     SkHRESULT.cpp
     SkIStream.cpp
     SkWGL_win.cpp
@@ -536,13 +555,23 @@ set(SKIA_SRC
   ${SKIA_UTILS_SRC}
   )
 
+# TODO(vlad/jack): check target type, use
+# SKIA_OPTS_NEON_SRC and SKIA_OPTS_AARCH64_SRC properly!
+# Also if none of the above, we need a SKIA_OPTS_NONE that just
+# includes the none opts
 if(HAVE_SSE)
-  set(SKIA_SSE_SRC ${SKIA_SRC} ${SKIA_OPTS_X86_SRC})
+  set(SKIA_SRC ${SKIA_SRC} ${SKIA_OPTS_X86_SRC})
   if(NOT MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse2 -mfpmath=sse")
   else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:SSE2")
+    # /arch:SSE2 is invalid on x86-64 (SSE2 always present)
+    if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:SSE2")
+    endif()
   endif()
 endif()
 
 add_library(skia STATIC ${SKIA_SRC})
+install(TARGETS skia ARCHIVE DESTINATION lib)
+install(DIRECTORY include/ DESTINATION include)
+install(DIRECTORY src/ DESTINATION src)
